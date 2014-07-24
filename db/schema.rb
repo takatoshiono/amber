@@ -13,16 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20140724004825) do
 
-  create_table "activities", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "drinking"
-    t.string   "memo"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "activities", ["user_id"], name: "index_activities_on_user_id"
-
   create_table "beers", force: true do |t|
     t.integer  "user_id"
     t.string   "memo"
