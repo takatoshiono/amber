@@ -3,10 +3,19 @@ require 'rails_helper'
 RSpec.describe Api::BeersController, :type => :controller do
   describe 'POST #create' do
     context 'with valid attributes' do
+      it 'returns a 201 created status code' do
+        post :create
+        expect(response).to have_http_status(:created)
+      end
+
       it 'saves the new beer in the database' do
-        expect {
-          post :create
-        }.to change(Beer, :count).by(1)
+        expect { post :create }.to change(Beer, :count).by(1)
+      end
+
+      it 'saves the memo in the database' do
+        params = { memo: '最高にうまいビールだった！' }
+        post :create, params
+        expect(Beer.last.memo).to eq params[:memo]
       end
     end
 
